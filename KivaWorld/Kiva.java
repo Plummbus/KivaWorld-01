@@ -14,7 +14,7 @@ public class Kiva {
     private FloorMap map;
     private boolean carryingPod;
     private boolean successfulyDropped;
-    //private motorLifetime;
+    private long motorLifetime; //20,000 hours = 72b milliseconds <- this will be our limit,
 
     public Kiva(FloorMap map) {
         this.currentLocation = new Point(2, 4); //default initial location
@@ -22,13 +22,11 @@ public class Kiva {
         this.carryingPod = false;
         this.successfulyDropped = false;
         this.map = map;
+        this.motorLifetime = 0L;
     }
     
     public Kiva(FloorMap map, Point currentLocation) {
-        this.directionFacing = FacingDirection.UP;
-        this.carryingPod = false;
-        this.successfulyDropped = false;
-        this.map = map;
+        this(map);
         this.currentLocation = currentLocation;
     }
     
@@ -37,12 +35,15 @@ public class Kiva {
         switch (command.getDirectionKey()) {
             case 'F':
                 moveForward();
+                incrementMotorLifetime();
                 break;
             case 'L':
                 moveLeft();
+                incrementMotorLifetime();
                 break;
             case 'R':
                 moveRight();
+                incrementMotorLifetime();
                 break;
             case 'T':
                 takePod();
@@ -117,7 +118,7 @@ public class Kiva {
     
     //need a switch statement because TURN_LEFT will change the Kiva's facing direction, ending direction dependant on starting direction
     public void moveLeft() {
-        switch (this.getDirectionFacing()) {
+        switch (getDirectionFacing()) {
             case UP:
                 this.directionFacing = FacingDirection.LEFT;
                 break;
@@ -140,7 +141,7 @@ public class Kiva {
     
     //same logic as moveLeft(), just a different direction facing
     public void moveRight() {
-        switch (this.getDirectionFacing()) {
+        switch (getDirectionFacing()) {
             case UP:
                 this.directionFacing = FacingDirection.RIGHT;
                 break;
@@ -197,6 +198,10 @@ public class Kiva {
         }
     }
     
+    public void incrementMotorLifetime() {
+        this.motorLifetime += 1000;
+    }
+    
     /*
      * GETTERS FOR CLASS FIELDS
      */
@@ -219,6 +224,10 @@ public class Kiva {
     
     public FloorMap getMap() {
         return this.map;
+    }
+    
+    public long getMotorLifetime() {
+        return this.motorLifetime;
     }
     
     /*

@@ -19,20 +19,20 @@ public class KivaMoveTest {
                             + "-------------\n";
 
     private String openLayout = ""
-                        + "-------------|"
-                        + "        P   *|"
-                        + "   ---      -|"
-                        + "   |*|      *|"
-                        + "  K---    D -|"
-                        + " *     * *  *|"
-                        + "-------------|";
+                        + "-------------|\n"
+                        + "        P   *|\n"
+                        + "   ---      -|\n"
+                        + "   |*|      *|\n"
+                        + "  K---    D -|\n"
+                        + " *     * *  *|\n"
+                        + "-------------|\n";
 
     //default initial location is Point(2, 4)
     //left-most position is Point(0, 0), for reference
     FloorMap defaultMap = new FloorMap(defaultLayout);
     FloorMap openMap = new FloorMap(openLayout);
     
-    //move forward once from UP facing direction, should end facing UP and at point(2, 3)
+    //testing to see what the coordinates are
     public void showMapDimensions() {
         Kiva kiva = new Kiva(defaultMap);
         int minY = kiva.getMap().getMinRowNum();
@@ -44,6 +44,7 @@ public class KivaMoveTest {
         System.out.print(message);
     }
     
+    //move forward once from UP facing direction, should end facing UP and at point(2, 3)
     public void testForwardFromUp() {
         Kiva kiva = new Kiva(defaultMap);
         
