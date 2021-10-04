@@ -74,7 +74,7 @@ public class Kiva {
             throw new IllegalMoveException(message);
         }
         if (floorObject == FloorMapObject.POD && this.isCarryingPod() == true) {
-            message = String.format("Illegal move to location with a pod, currently carrying a pod. Tried to go to Point(%d, %d)" +
+            message = String.format("Illegal move to location with a pod because you are currently carrying a pod. Tried to go to Point(%d, %d)" +
                                             ". Last valid location was Point(%d, %d)", x, y, this.getCurrentLocation().getX(), this.getCurrentLocation().getY());
             throw new IllegalMoveException(message);
         }
@@ -173,7 +173,7 @@ public class Kiva {
         }
         else {
             String objectName = mapObject.name(); 
-            String message = String.format("Current location Point(%d, %d) does not contain a POD, cannot take from: %s", target.getX(), target.getY(), objectName);
+            String message = String.format("Current location Point(%d, %d) does not contain a POD, cannot TAKE from: %s", target.getX(), target.getY(), objectName);
             throw new NoPodException(message);
         }
     }
@@ -187,12 +187,12 @@ public class Kiva {
                 this.successfulyDropped = true;
             } else {
             String objectName = mapObject.name();
-            String message = String.format("Current location Point(%d, %d) is not a DROP_ZONE, cannot drop pod in: %s", target.getX(), target.getY(), objectName);
+            String message = String.format("Current location Point(%d, %d) is not a DROP_ZONE, cannot DROP pod in: %s", target.getX(), target.getY(), objectName);
             throw new IllegalDropZoneException(message);
             }
         } else {
             String boolValue = String.valueOf(this.isCarryingPod());
-            String message = String.format("isCarryingPod is currently: %s. Cannot drop what you do not have!", boolValue);
+            String message = String.format("DROP at Point(%d, %d) failed! isCarryingPod is currently: %s. Cannot drop what you do not have!", target.getX(), target.getY(), boolValue);
             throw new NoPodException(message);
         }
     }
