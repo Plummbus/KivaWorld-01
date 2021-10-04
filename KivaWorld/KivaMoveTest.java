@@ -217,8 +217,32 @@ public class KivaMoveTest {
         verifyKivaState("testDropOnDropZone", kiva, new Point(10, 4), FacingDirection.DOWN, false, true);
     }
     
+    //similar code to method above, but now dropping pod on an EMPTY location, should throw IllegalDropZoneException
+    public void testDropPodOnEmpty() {
+        Kiva kiva = new Kiva(defaultMap);
+        
+        //to drop pod
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.TURN_RIGHT);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.TAKE);    //Point(8, 1), PICK UP POD
+        
+        //to empty location
+        kiva.move(KivaCommand.FORWARD);
+        kiva.move(KivaCommand.FORWARD); //Point(10, 1)
+        kiva.move(KivaCommand.DROP);    //DROP POD
+    }
+    
     //this test uses the openMap layout, so we should be able to attempt to go left to a -1 x position without hitting an OBSTACLE
-    //start at Point(2, 4), turn left ONCE and then move forward 3 TIMES, at which time an exception is thrown
+    //start at Point(2, 4), turn left ONCE and then move forward 3 TIMES, should throw an IllegalMoveException
+    //FloorMap has its own exception that will throw before this, though
     public void testOutOfBoundsMove() {
         Kiva kiva = new Kiva(openMap);
         
@@ -228,7 +252,7 @@ public class KivaMoveTest {
         kiva.move(KivaCommand.FORWARD);
     }
     
-    //start at Point(2, 4) and attempt to move to Point(3, 3) to collide with obstacle, at which time an exception is thrown
+    //start at Point(2, 4) and attempt to move to Point(3, 3) to collide with obstacle, should throw an IllegalMoveException
     public void testHitObstacle() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -238,7 +262,7 @@ public class KivaMoveTest {
     }
     
     //kiva object starts with carryingPod = true
-    //start at Point(2, 4) and attempt to move to Point(8, 1) to collide with pod, at which time an exception is thrown
+    //start at Point(2, 4) and attempt to move to Point(8, 1) to collide with pod, should throw an IllegalMoveException
     public void testHoldPodMoveToPod() {
         Kiva kiva = new Kiva(defaultMap);
         kiva.setCarryingPod(true);
@@ -256,12 +280,21 @@ public class KivaMoveTest {
         
     }
     
+    //kiva object attempts to drop a pod when carryingPod = false, should throw a NoPodException
+    public void testDropWhenNoPod() {
+        Kiva kiva = new Kiva(defaultMap);
+        
+        kiva.move(KivaCommand.DROP);
+    }
+    
     //start at Point(2, 4), attempt to pick up POD while on an EMPTY location
     //should print to console a message
     public void testTakeFromEmpty() {
         Kiva kiva = new Kiva(defaultMap);
         kiva.move(KivaCommand.TAKE);
     }
+    
+    
     
     private boolean sameLocation(Point a, Point b) {
         return a.getX() == b.getX() && a.getY() == b.getY();

@@ -163,23 +163,43 @@ public class Kiva {
     
     //if in a POD, pick up, else print message
     //don't have to check if carryPod == true because an IllegalMoveException will happen if
-    //user tries to enter space that contains POD while holding POD
+    //user tries to enter space that contains POD while holding POD,
+    //I put it in just in case
     public void takePod() {
-        if (this.getMap().getObjectAtLocation(this.getCurrentLocation()) == FloorMapObject.POD) {
+        Point target = this.getCurrentLocation();
+        FloorMapObject mapObject = this.getMap().getObjectAtLocation(target);
+        if (mapObject == FloorMapObject.POD && this.isCarryingPod() == false) {
             this.carryingPod = true;
         }
         else {
-            System.out.println("No pod at this location!");
+            String objectName = mapObject.name(); 
+            String message = String.format("Current location Point(%d, %d) does not contain a POD, cannot take from: %s", target.getX(), target.getY(), objectName);
+            throw new NoPodException(message);
         }
     }
     
     public void dropPod() {
-        if (isCarryingPod()) {
-            this.carryingPod = false;
-            this.successfulyDropped = true;
+        Point target = this.getCurrentLocation();
+        FloorMapObject mapObject = this.getMap().getObjectAtLocation(target);
+        if (this.isCarryingPod() == true) {
+            if (mapObject == FloorMapObject.DROP_ZONE) {
+                this.carryingPod = false;
+                this.successfulyDropped = true;
+            } else {
+            String objectName = mapObject.name();
+            String message = String.format("Current location Point(%d, %d) is not a DROP_ZONE, cannot drop pod in: %s", target.getX(), target.getY(), objectName);
+            throw new IllegalDropZoneException(message);
+            }
+        } else {
+            String boolValue = String.valueOf(this.isCarryingPod());
+            String message = String.format("isCarryingPod is currently: %s. Cannot drop what you do not have!", boolValue);
+            throw new NoPodException(message);
         }
     }
     
+    /*
+     * GETTERS FOR CLASS FIELDS
+     */
     
     public boolean isCarryingPod() {
         return this.carryingPod;
@@ -203,7 +223,7 @@ public class Kiva {
     
     /*
      * 
-     * These methods are for testing purposes in KivaConstructor.java and KivaMoveTest.java
+     * These methods (setters) are for TESTING PURPOSES ONLY in KivaConstructor.java and KivaMoveTest.java
      */
     public void setCurrentLocation(Point point) {
         this.currentLocation = point;
