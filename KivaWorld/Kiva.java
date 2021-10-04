@@ -17,7 +17,7 @@ public class Kiva {
     //private motorLifetime;
 
     public Kiva(FloorMap map) {
-        this.currentLocation = new Point(2, 3); //default initial location
+        this.currentLocation = new Point(2, 4); //default initial location
         this.directionFacing = FacingDirection.UP;
         this.carryingPod = false;
         this.successfulyDropped = false;
@@ -60,7 +60,9 @@ public class Kiva {
         Point target = new Point(x, y);
         FloorMapObject floorObject = this.map.getObjectAtLocation(target);
         String message;
-        if (x < this.map.getMinRowNum() || x > this.map.getMaxRowNum() || y < this.map.getMinColNum() || y > this.map.getMaxColNum()) {
+        //FloorMap has a InvalidFloorMapLocationException that will get called before this
+        //this is here just in case
+        if (x < this.map.getMinColNum() || x > this.map.getMaxColNum() || y < this.map.getMinRowNum() || y > this.map.getMaxRowNum()) {
             message = String.format("Illegal move to out-of-bounds location. Tried to go to Point(%d, %d)" + 
                                             ". Last valid location was Point(%d, %d)", x, y, this.getCurrentLocation().getX(), this.getCurrentLocation().getY());
             throw new IllegalMoveException(message);
@@ -159,14 +161,15 @@ public class Kiva {
         System.out.println("going right!");
     }
     
-    //if not holding pod, pickup up pod.
-    //if holding pod, print statement for testing (will change later)
+    //if in a POD, pick up, else print message
+    //don't have to check if carryPod == true because an IllegalMoveException will happen if
+    //user tries to enter space that contains POD while holding POD
     public void takePod() {
-        if (!isCarryingPod()) {
+        if (this.getMap().getObjectAtLocation(this.getCurrentLocation()) == FloorMapObject.POD) {
             this.carryingPod = true;
         }
         else {
-            System.out.println("already carrying pod!");
+            System.out.println("No pod at this location!");
         }
     }
     
@@ -198,4 +201,15 @@ public class Kiva {
         return this.map;
     }
     
+    /*
+     * 
+     * These methods are for testing purposes in KivaConstructor.java and KivaMoveTest.java
+     */
+    public void setCurrentLocation(Point point) {
+        this.currentLocation = point;
+    }
+    
+    public void setCarryingPod(boolean value) {
+        this.carryingPod = value;
+    }
 }

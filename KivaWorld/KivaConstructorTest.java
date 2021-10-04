@@ -8,7 +8,7 @@ import edu.duke.Point;
  * @version (a version number or a date)
  */
 public class KivaConstructorTest {
-    String defaultLayout = ""
+    private String defaultLayout = ""
                             + "-------------\n"
                             + "        P   *\n"
                             + "   **       *\n"
@@ -17,12 +17,12 @@ public class KivaConstructorTest {
                             + " * * * * * **\n"
                             + "-------------\n";
 
-    FloorMap defaultMap = new FloorMap(defaultLayout);
+    private FloorMap defaultMap = new FloorMap(defaultLayout);
     
     public void testSingleArgumentConstructor() {
         Kiva kiva = new Kiva(defaultMap);
         
-        kiva.currentLocation = new Point(2, 4);
+        kiva.setCurrentLocation(new Point(2, 4));
         Point initialLocation = kiva.getCurrentLocation();
         Point expectedLocation = new Point(2, 4);
         
