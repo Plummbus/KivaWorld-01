@@ -1,5 +1,6 @@
 import edu.duke.FileResource;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * This is the class that controls Kiva's actions. Implement the <code>run()</code>
@@ -27,14 +28,33 @@ public class RemoteControl {
      */
     public void run() {
         System.out.println("Please select a map file.");
-        FileResource fileResource = null;
+        System.out.println("Legal inputs are: \"sample_floor_map1.txt\", \"sample_floor_map2.txt\", and \"sample_floor_map3.txt\"");
+        Scanner sc = new Scanner(System.in);
+        String file = sc.nextLine();
+        FileResource fileResource = new FileResource(file);
+        
         String inputMap = fileResource.asString();
         FloorMap floorMap = new FloorMap(inputMap);
+        Kiva kiva = new Kiva(floorMap);
         System.out.println(floorMap);
+        
+        
 
         System.out.println("Please enter the directions for the Kiva Robot to take.");
         String directions = keyboardResource.getLine();
         System.out.println("Directions that you typed in: " + directions);
+        KivaCommand[] commands = convertToKivaCommands(directions);
+        //System.out.println(Arrays.toString(commands));
+        for (KivaCommand command : commands) {
+            kiva.move(command);
+        }
+    }
+    
+    public void displayDiagnostics(Kiva kiva) {
+        String diagnosticLocation = String.format("Start location of kiva: Point(%d, %d)", kiva.getCurrentLocation().getX(), kiva.getCurrentLocation().getY());
+        String diagnosticDirection = String.format("Start direction facing of kiva: %s", kiva.getDirectionFacing().name());
+        System.out.println(diagnosticLocation);
+        System.out.println(diagnosticDirection);
     }
     
     public KivaCommand[] convertToKivaCommands(String input) {

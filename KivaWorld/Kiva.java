@@ -17,7 +17,7 @@ public class Kiva {
     private long motorLifetime; //20,000 hours = 72b milliseconds <- this will be our limit,
 
     public Kiva(FloorMap map) {
-        this.currentLocation = new Point(2, 4); //default initial location
+        this.currentLocation = map.getInitialKivaLocation();
         this.directionFacing = FacingDirection.UP;
         this.carryingPod = false;
         this.successfulyDropped = false;
