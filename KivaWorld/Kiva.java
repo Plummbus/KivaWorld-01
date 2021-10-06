@@ -70,12 +70,12 @@ public class Kiva {
         }
         if (floorObject == FloorMapObject.OBSTACLE) {
             System.out.println(floorObject);
-            message = String.format("Illegal move to location with an obstacle. Tried to go to Point(%d, %d)" +
+            message = String.format("Illegal move to location with an OBSTACLE. Tried to go to Point(%d, %d)" +
                                             ". Last valid location was Point(%d, %d)", x, y, this.getCurrentLocation().getX(), this.getCurrentLocation().getY());
             throw new IllegalMoveException(message);
         }
         if (floorObject == FloorMapObject.POD && this.isCarryingPod() == true) {
-            message = String.format("Illegal move to location with a pod because you are currently carrying a pod. Tried to go to Point(%d, %d)" +
+            message = String.format("Illegal move to location with a POD because you are currently carrying a POD. Tried to go to Point(%d, %d)" +
                                             ". Last valid location was Point(%d, %d)", x, y, this.getCurrentLocation().getX(), this.getCurrentLocation().getY());
             throw new IllegalMoveException(message);
         }
@@ -112,8 +112,6 @@ public class Kiva {
                 System.out.println("default case for moveForward() was hit!");
                 break;
         }
-        System.out.println(String.format("Moving to Point(%d, %d)", this.currentLocation.getX(), this.currentLocation.getY()));
-        System.out.print(this.map.getObjectAtLocation(new Point(this.currentLocation.getX(), this.currentLocation.getY())));
     }
     
     //need a switch statement because TURN_LEFT will change the Kiva's facing direction, ending direction dependant on starting direction
@@ -136,7 +134,6 @@ public class Kiva {
                 break;
             
         }
-        System.out.println("going left!");
     }
     
     //same logic as moveLeft(), just a different direction facing
@@ -159,7 +156,6 @@ public class Kiva {
                 break;
             
         }
-        System.out.println("going right!");
     }
     
     //if in a POD, pick up, else print message

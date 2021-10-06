@@ -29,16 +29,14 @@ public class RemoteControl {
     public void run() {
         System.out.println("Please select a map file.");
         System.out.println("Legal inputs are: \"sample_floor_map1.txt\", \"sample_floor_map2.txt\", and \"sample_floor_map3.txt\"");
-        Scanner sc = new Scanner(System.in);
-        String file = sc.nextLine();
-        FileResource fileResource = new FileResource(file);
+        FileResource fileResource = new FileResource();
         
         String inputMap = fileResource.asString();
         FloorMap floorMap = new FloorMap(inputMap);
         Kiva kiva = new Kiva(floorMap);
         System.out.println(floorMap);
         
-        
+        displayDiagnostics(kiva, floorMap);
 
         System.out.println("Please enter the directions for the Kiva Robot to take.");
         String directions = keyboardResource.getLine();
@@ -48,13 +46,32 @@ public class RemoteControl {
         for (KivaCommand command : commands) {
             kiva.move(command);
         }
+        
+        outputPrintStatement(kiva, commands);
     }
     
-    public void displayDiagnostics(Kiva kiva) {
-        String diagnosticLocation = String.format("Start location of kiva: Point(%d, %d)", kiva.getCurrentLocation().getX(), kiva.getCurrentLocation().getY());
-        String diagnosticDirection = String.format("Start direction facing of kiva: %s", kiva.getDirectionFacing().name());
+    public void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
+        if (kiva.isSuccessfullyDropped() && commands[commands.length - 1] == KivaCommand.DROP) {
+            System.out.println("Successfully picked up the pod and dropped it off. Thank you!");
+        }
+        if (kiva.isSuccessfullyDropped() && commands[commands.length - 1] != KivaCommand.DROP) {
+            System.out.println("I'm sorry. The Kiva Robot did not pick up the pod and then drop it off in the right place.");
+        }
+    }
+    
+    public void displayDiagnostics(Kiva kiva, FloorMap map) {
+        String diagnosticLocation = String.format("Starting location of Kiva: Point(%d, %d)", kiva.getCurrentLocation().getX(), kiva.getCurrentLocation().getY());
+        String diagnosticDirection = String.format("Starting direction facing of Kiva: %s", kiva.getDirectionFacing().name());
+        String diagnosticTake = String.format("Kiva has TAKEN Pod: %s", Boolean.toString(kiva.isCarryingPod()));
+        String diagnosticDrop = String.format("Kiva has DROPPED Pod: %s", Boolean.toString(kiva.isSuccessfullyDropped()));
+        String diagnosticPod = String.format("Location of Pod: Point(%d, %d)", map.getPodLocation().getX(), map.getPodLocation().getY());
+        String diagnosticDropZone = String.format("Location of Drop Zone: Point(%d, %d)", map.getDropZoneLocation().getX(), map.getDropZoneLocation().getY());
         System.out.println(diagnosticLocation);
         System.out.println(diagnosticDirection);
+        System.out.println(diagnosticTake);
+        System.out.println(diagnosticDrop);
+        System.out.println(diagnosticPod);
+        System.out.println(diagnosticDropZone);
     }
     
     public KivaCommand[] convertToKivaCommands(String input) {
