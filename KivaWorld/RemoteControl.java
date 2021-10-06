@@ -10,21 +10,30 @@ import java.util.Scanner;
  * complete the project.
  */
 public class RemoteControl {
+    
     KeyboardResource keyboardResource;
 
     /**
-     * Build a new RemoteControl.
+     * Builds a new RemoteControl.
+     * The constructor is only called for use in test classes, since the program runs through the run() method call within this class.
+     * @see #run
      */
     public RemoteControl() {
-        keyboardResource = new KeyboardResource();
+        
+        /**
+         * Accesses user input data from the console.
+         * This is a class included with the Duke library that gathers data typed by the keyboard via the console, similar to Scanner.
+         */
+        keyboardResource = new KeyboardResource();  //easier way to access user input without using Scanner, provided by our friends at Duke
     }
 
     /**
      * The controller that directs Kiva's activity. Prompts the user for the floor map
      * to load, displays the map, and asks the user for the commands for Kiva to execute.
+     * Calls helper functions to display diagnostic information and to display specific statements at the end of the commands.
+     * @see #displayDiagnostics
+     * @see #outputPrintStatement
      *
-     * [Here's the method you'll execute from within BlueJ. It may or may not run successfully
-     * as-is, but you'll definitely need to add more to complete the project.]
      */
     public void run() {
         System.out.println("Please select a map file.");
