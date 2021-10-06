@@ -51,6 +51,9 @@ public class RemoteControl {
     }
     
     public void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
+        if (!kiva.isSuccessfullyDropped()) {
+            System.out.println("I'm sorry. The Kiva Robot did not pick up the pod and then drop it off in the right place.");
+        }
         if (kiva.isSuccessfullyDropped() && commands[commands.length - 1] == KivaCommand.DROP) {
             System.out.println("Successfully picked up the pod and dropped it off. Thank you!");
         }
@@ -78,7 +81,8 @@ public class RemoteControl {
         char[] tempArray = input.toCharArray();
         KivaCommand[] finalArray = new KivaCommand[tempArray.length];
         for (int i = 0; i < tempArray.length; i++) {
-            char value = Character.toUpperCase(tempArray[i]);
+            //char value = Character.toUpperCase(tempArray[i]);     //commenting this out, ATA outline never states they want us to validate for case-sensitivity
+            char value = tempArray[i];
             switch (value) {
                 case 'F':
                     finalArray[i] = KivaCommand.FORWARD;
@@ -97,7 +101,8 @@ public class RemoteControl {
                     continue;
                 default:
                     String message = String.format("User input of \"%c\" is illegal. Legal inputs are \"F\", \"R\", \"L\", \"T\", and \"D\"."
-                                                    + "\nLoop failed on i = %d. Current KivaCommand[]: %s", tempArray[i], i, Arrays.toString(finalArray));
+                                                    + "\nLoop failed to pass a legal value to array on i = %d."
+                                                    + "\nCurrent KivaCommand[]: %s", tempArray[i], i, Arrays.toString(finalArray));
                     throw new IllegalArgumentException(message);
             }
         }
