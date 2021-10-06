@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=RemoteControl
-comment0.text=\r\n\ This\ is\ the\ class\ that\ controls\ Kiva's\ actions.\ Implement\ the\ <code>run()</code>\r\n\ method\ to\ deliver\ the\ pod\ and\ avoid\ the\ obstacles.\r\n\r\n\ This\ is\ starter\ code\ that\ may\ or\ may\ not\ work.\ You\ will\ need\ to\ update\ the\ code\ to\r\n\ complete\ the\ project.\r\n
+comment0.text=\r\n\ The\ <tt>RemoteControl</tt>\ contains\ the\ <i>run()</i>\ method,\ the\ method\ we\ call\ to\ run\ the\ program.\ The\ program\ prompts\ the\ user\ to\ select\ a\ <tt>.txt</tt>\ file,\r\n\ then\ using\ <tt>FileResource</tt>,\ another\ window\ will\ open\ up\ to\ display\ the\ files\ the\ user\ can\ choose\ from.\ Upon\ selecting\ a\ valid\ file,\ the\ program\r\n\ prints\ diagnostic\ information\ to\ the\ console.\ This\ includes\ data\ about\ the\ <tt>Kiva</tt>'s\ initial\ location,\ the\ status\ of\ its\ boolean\ fields,\ and\ where\r\n\ the\ Pod\ and\ Drop\ Zones\ are.\ The\ user\ will\ be\ prompted\ to\ enter\ in\ a\ series\ of\ commands.\ These\ commands\ are\ taken\ in\ as\ a\ single\ string\ and\ are\ then\ converted\r\n\ into\ an\ array\ of\ enums\ that\ the\ <tt>Kiva</tt>\ can\ interpret.\ A\ success,\ failure,\ or\ error\ message\ is\ displayed\ after\ processing\ the\ commands.\r\n
 comment1.params=
 comment1.target=RemoteControl()
 comment1.text=\r\n\ Builds\ a\ new\ RemoteControl.\r\n\ The\ constructor\ is\ only\ called\ for\ use\ in\ test\ classes,\ since\ the\ program\ runs\ through\ the\ run()\ method\ call\ within\ this\ class.\r\n\ @see\ \#run\r\n
@@ -11,6 +11,7 @@ comment3.params=kiva\ commands
 comment3.target=void\ outputPrintStatement(Kiva,\ KivaCommand[])
 comment4.params=kiva\ map
 comment4.target=void\ displayDiagnostics(Kiva,\ FloorMap)
+comment4.text=\r\n\ Prints\ diagnostic\ information\ to\ console.\r\n\ After\ a\ <tt>.txt</tt>\ file\ is\ chosen\ by\ the\ user,\ information\ regarding\ the\ <tt>KivaM</tt>\ and\ the\ <tt>FloorMap</tt>\ are\ shown\ to\ the\ user\r\n\ so\ they\ can\ make\ an\ informed\ decision\ when\ inputting\ commands.\r\n
 comment5.params=input
 comment5.target=KivaCommand[]\ convertToKivaCommands(java.lang.String)
 numComments=6

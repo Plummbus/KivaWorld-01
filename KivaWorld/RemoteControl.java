@@ -3,15 +3,19 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * This is the class that controls Kiva's actions. Implement the <code>run()</code>
- * method to deliver the pod and avoid the obstacles.
- *
- * This is starter code that may or may not work. You will need to update the code to
- * complete the project.
+ * The <tt>RemoteControl</tt> contains the <i>run()</i> method, the method we call to run the program. The program prompts the user to select a <tt>.txt</tt> file,
+ * then using <tt>FileResource</tt>, another window will open up to display the files the user can choose from. Upon selecting a valid file, the program
+ * prints diagnostic information to the console. This includes data about the <tt>Kiva</tt>'s initial location, the status of its boolean fields, and where
+ * the Pod and Drop Zones are. The user will be prompted to enter in a series of commands. These commands are taken in as a single string and are then converted
+ * into an array of enums that the <tt>Kiva</tt> can interpret. A success, failure, or error message is displayed after processing the commands.
  */
 public class RemoteControl {
     
-    KeyboardResource keyboardResource;
+    /**
+     * Accesses user input data from the console.
+     * This is a class included with the Duke library that gathers data typed by the keyboard via the console, similar to Scanner.
+     */
+    private KeyboardResource keyboardResource;
 
     /**
      * Builds a new RemoteControl.
@@ -19,11 +23,6 @@ public class RemoteControl {
      * @see #run
      */
     public RemoteControl() {
-        
-        /**
-         * Accesses user input data from the console.
-         * This is a class included with the Duke library that gathers data typed by the keyboard via the console, similar to Scanner.
-         */
         keyboardResource = new KeyboardResource();  //easier way to access user input without using Scanner, provided by our friends at Duke
     }
 
@@ -59,6 +58,7 @@ public class RemoteControl {
         outputPrintStatement(kiva, commands);
     }
     
+    
     public void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
         if (!kiva.isSuccessfullyDropped()) {
             System.out.println("I'm sorry. The Kiva Robot did not pick up the pod and then drop it off in the right place.");
@@ -71,6 +71,11 @@ public class RemoteControl {
         }
     }
     
+    /**
+     * Prints diagnostic information to console.
+     * After a <tt>.txt</tt> file is chosen by the user, information regarding the <tt>KivaM</tt> and the <tt>FloorMap</tt> are shown to the user
+     * so they can make an informed decision when inputting commands.
+     */
     public void displayDiagnostics(Kiva kiva, FloorMap map) {
         String diagnosticLocation = String.format("Starting location of Kiva: Point(%d, %d)", kiva.getCurrentLocation().getX(), kiva.getCurrentLocation().getY());
         String diagnosticDirection = String.format("Starting direction facing of Kiva: %s", kiva.getDirectionFacing().name());
