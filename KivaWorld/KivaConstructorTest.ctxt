@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=KivaConstructorTest
-comment0.text=\r\n\ Write\ a\ description\ of\ KivaConstructorTest\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Test\ File\ to\ check\ if\ the\ <tt>Kiva</tt>\ class\ constructors\ work\ properly.\ The\ base\ and\ overloaded\ class\ constructors\ are\ called\ using\ a\ default\ map\ layout,\r\n\ and\ then\ a\ message\ is\ printed\ to\ the\ console\ based\ on\ whether\ or\ not\ the\ current\ object\ possess\ the\ values\ we\ expect\ it\ to\ have.\r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.10\r\n\ @since\ 10-03-2021\r\n
 comment1.params=
 comment1.target=void\ testSingleArgumentConstructor()
+comment1.text=\r\n\ Tests\ if\ base\ <tt>Kiva</tt>\ constructor\ works\ as\ intended.\r\n\ Test\ is\ passed\ a\ <tt>FloorMap</tt>\ object,\ and\ prints\ a\ message\ to\ the\ console\ based\ on\ whether\ or\ not\ the\ <tt>Kiva</tt>\ instance\ has\ the\ values\ it\ is\r\n\ expected\ to\ have.\r\n\ \r\n\ @see\ Kiva\#Kiva(FloorMap,\ Point)\r\n
 comment2.params=a\ b
 comment2.target=boolean\ sameLocation(edu.duke.Point,\ edu.duke.Point)
+comment2.text=\r\n\ Helper\ function\ for\ the\ constructor\ tests.\r\n\ Lets\ us\ know\ if\ two\ Points\ are\ the\ same\ Point.\r\n\ \r\n\ @param\ a\ \ \ \ \ the\ first\ Point\ you\ wish\ to\ compare.\r\n\ @param\ b\ \ \ \ \ the\ second\ Point\ you\ wish\ to\ compare.\r\n\ \r\n\ @return\ true\ if\ parameters\ are\ equal,\ false\ if\ not\r\n
 comment3.params=
 comment3.target=void\ testTwoArgumentConstructor()
+comment3.text=\r\n\ Tests\ if\ overloaded\ <tt>Kiva</tt>\ constructor\ works\ as\ intended.\r\n\ Test\ is\ passed\ a\ <tt>FloorMap</tt>\ object\ and\ a\ Point\ that\ is\ not\ the\ initial\ <tt>Kiva</tt>\ starting\ location\ based\ on\ the\ map.\ It\ then\ prints\ a\ message\r\n\ to\ the\ console\ based\ on\ whether\ or\ not\ the\ <tt>Kiva</tt>\ instance\ has\ the\ values\ it\ is\ expected\ to\ have.\r\n\ \r\n\ @see\ Kiva\#Kiva\r\n
 numComments=4

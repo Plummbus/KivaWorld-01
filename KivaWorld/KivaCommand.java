@@ -15,9 +15,11 @@ public enum KivaCommand {
     private final char label;
     
     /**
-     * Private Class Contrstructor.
+     * Private class constructor sets label of enum.
      * Creates instance of this class and assigns one of the 5 values to the singular class field <tt>label</tt>. Since this is a private constructor, its use
      * is restricted to all places except for inside this class itself.
+     * 
+     * @param label     char that corresponds with a value in the enum.
      */
     private KivaCommand(char label) {
         this.label = label;

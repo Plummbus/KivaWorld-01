@@ -69,7 +69,7 @@ public class RemoteControl {
      * Displays a message to the user upon completion of program execution.
      * The <tt>Kiva</tt> successfully dropping the Pod at the correct Drop Zone is the determing factor for what message gets printed to the console.
      */
-    public void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
+    private void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
         if (!kiva.isSuccessfullyDropped()) {
             System.out.println("I'm sorry. The Kiva Robot did not pick up the pod and then drop it off in the right place.");
         }
@@ -86,7 +86,7 @@ public class RemoteControl {
      * After a <tt>.txt</tt> file is chosen by the user, information regarding the <tt>KivaM</tt> and the <tt>FloorMap</tt> are shown to the user
      * so they can make an informed decision when inputting commands.
      */
-    public void displayDiagnostics(Kiva kiva, FloorMap map) {
+    private void displayDiagnostics(Kiva kiva, FloorMap map) {
         String diagnosticLocation = String.format("Starting location of Kiva: Point(%d, %d)", kiva.getCurrentLocation().getX(), kiva.getCurrentLocation().getY());
         String diagnosticDirection = String.format("Starting direction facing of Kiva: %s", kiva.getDirectionFacing().name());
         String diagnosticTake = String.format("Kiva has TAKEN Pod: %s", Boolean.toString(kiva.isCarryingPod()));
@@ -104,10 +104,16 @@ public class RemoteControl {
     /**
      * Takes in a <tt>String</tt> from the user and converts the <String> into data the <tt>Kiva</tt> can interpret.
      * Each <tt>char</tt> of the given <tt>String</tt>, if it has an analagous value in <tt>KivaCommand</tt>, gets turned into an enum of that class and stored in
-     * an array. Later, the <tt>Kiva</tt> will traverse that array and attempt to execute each command.
+     * an array. Later, the <tt>Kiva</tt> will traverse that array and attempt to execute each command. Each value in this array will be read by <tt>move()</tt>
      * 
-     * @see #run
+     * @param input     The <tt>String</tt> of commands the user inputted in the console.
+     *                  Should be all uppercase, without whitespace, and only
+     *                  contain <tt>char</tt>'s listed in <tt>KivaCommand</tt>
+     *                  
+     * 
      * @return a collection of <tt>KivaCommand</tt> values for the <tt>Kiva</tt> to execute 
+     * @see #run
+     * @see Kiva#move
      */
     public KivaCommand[] convertToKivaCommands(String input) {
         char[] tempArray = input.toCharArray();

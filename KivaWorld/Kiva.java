@@ -55,7 +55,7 @@ public class Kiva {
     /**
      * The lifetime of the Kiva motor.
      */
-    private long motorLifetime; //20,000 hours = 72b milliseconds <- this will be our limit,
+    private long motorLifetime; //20,000 hours = 72b milliseconds <- this will be the limit, though the project doesn't specify to error check for hitting this limit
 
     /**
      * Class Constructor.
@@ -177,7 +177,7 @@ public class Kiva {
         int y = currentLocation.getY();
         
         switch (this.getDirectionFacing()) {    //I could implement getDelta() from FacingDirection.java here,
-                                                //but I think using the getter method for the switch comparison this way makes the cases more readable
+                                                //but I think using the getter method for the switch comparison this way makes the cases more readable/user-friendly
             case UP:
                 y = y - 1;
                 validMove(x, y);
