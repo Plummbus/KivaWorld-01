@@ -44,10 +44,23 @@ public class KivaMoveTest {
         System.out.print(message);
     }
     
+    public void testDeltas() {
+        Kiva kiva = new Kiva(defaultMap);
+        System.out.println(kiva.getDirectionFacing().getDelta());   //UP
+        
+        kiva.move(KivaCommand.TURN_LEFT);
+        System.out.println(kiva.getDirectionFacing().getDelta());
+        
+        kiva.move(KivaCommand.TURN_LEFT);
+        System.out.println(kiva.getDirectionFacing().getDelta());
+        
+        kiva.move(KivaCommand.TURN_LEFT);
+        System.out.println(kiva.getDirectionFacing().getDelta());
+    }
+    
     //move forward once from UP facing direction, should end facing UP and at point(2, 3)
     public void testForwardFromUp() {
         Kiva kiva = new Kiva(defaultMap);
-        
         kiva.move(KivaCommand.FORWARD);
         
         verifyKivaState("testForwardFromUp", kiva, new Point(2, 3), FacingDirection.UP, false, false);

@@ -8,12 +8,16 @@ import java.util.Scanner;
  * prints diagnostic information to the console. This includes data about the <tt>Kiva</tt>'s initial location, the status of its boolean fields, and where
  * the Pod and Drop Zones are. The user will be prompted to enter in a series of commands. These commands are taken in as a single string and are then converted
  * into an array of enums that the <tt>Kiva</tt> can interpret. A success, failure, or error message is displayed after processing the commands.
+ * 
+ * @author Franz Jacob Hernandez (herfrn@amazon.com) 
+ * @version 0.10
+ * @since 10-03-2021
  */
 public class RemoteControl {
     
     /**
      * Accesses user input data from the console.
-     * This is a class included with the Duke library that gathers data typed by the keyboard via the console, similar to Scanner.
+     * This is a class included with the Duke library that gathers data typed by the keyboard via the console, similar to <tt>Scanner</tt>.
      */
     private KeyboardResource keyboardResource;
 
@@ -27,9 +31,12 @@ public class RemoteControl {
     }
 
     /**
-     * The controller that directs Kiva's activity. Prompts the user for the floor map
-     * to load, displays the map, and asks the user for the commands for Kiva to execute.
+     * Executes the <tt>Kiva</tt> program.
+     * Prompts the user for the floor map to load, displays the map, and asks the user for commands the <tt>Kiva</tt> can execute.
      * Calls helper functions to display diagnostic information and to display specific statements at the end of the commands.
+     * Has <tt>Kiva</tt> traverse through an array of <tt>KivaCommand</tt> in order to perform moves/actions.
+     * 
+     * @see #convertToKivaCommands
      * @see #displayDiagnostics
      * @see #outputPrintStatement
      *
@@ -58,7 +65,10 @@ public class RemoteControl {
         outputPrintStatement(kiva, commands);
     }
     
-    
+    /**
+     * Displays a message to the user upon completion of program execution.
+     * The <tt>Kiva</tt> successfully dropping the Pod at the correct Drop Zone is the determing factor for what message gets printed to the console.
+     */
     public void outputPrintStatement(Kiva kiva, KivaCommand[] commands) {
         if (!kiva.isSuccessfullyDropped()) {
             System.out.println("I'm sorry. The Kiva Robot did not pick up the pod and then drop it off in the right place.");
@@ -91,6 +101,14 @@ public class RemoteControl {
         System.out.println(diagnosticDropZone);
     }
     
+    /**
+     * Takes in a <tt>String</tt> from the user and converts the <String> into data the <tt>Kiva</tt> can interpret.
+     * Each <tt>char</tt> of the given <tt>String</tt>, if it has an analagous value in <tt>KivaCommand</tt>, gets turned into an enum of that class and stored in
+     * an array. Later, the <tt>Kiva</tt> will traverse that array and attempt to execute each command.
+     * 
+     * @see #run
+     * @return a collection of <tt>KivaCommand</tt> values for the <tt>Kiva</tt> to execute 
+     */
     public KivaCommand[] convertToKivaCommands(String input) {
         char[] tempArray = input.toCharArray();
         KivaCommand[] finalArray = new KivaCommand[tempArray.length];

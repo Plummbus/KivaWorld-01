@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=KivaCommand
-comment0.text=\r\n\ Write\ a\ description\ of\ KivaCommand\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ State\ of\ the\ current\ command\ the\ <tt>Kiva</tt>\ is\ attempting\ to\ perform.\r\n\ \r\n\ The\ <tt>Kiva</tt>\ will\ receive\ commands\ as\ values\ of\ this\ enum.\ Each\ value\ corresponds\ to\ a\ specific\ action/movement\ the\ <tt>Kiva</tt>\ can\ take.\r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.10\r\n\ @since\ 10-03-2021\r\n
 comment1.params=label
 comment1.target=KivaCommand(char)
+comment1.text=\r\n\ Private\ Class\ Contrstructor.\r\n\ Creates\ instance\ of\ this\ class\ and\ assigns\ one\ of\ the\ 5\ values\ to\ the\ singular\ class\ field\ <tt>label</tt>.\ Since\ this\ is\ a\ private\ constructor,\ its\ use\r\n\ is\ restricted\ to\ all\ places\ except\ for\ inside\ this\ class\ itself.\r\n
 comment2.params=
 comment2.target=char\ getDirectionKey()
+comment2.text=\r\n\ A\ representaion\ of\ an\ action/movement\ the\ <tt>Kiva</tt>\ can\ perform.\r\n\ \r\n\ @see\ Kiva\#move\r\n\ @return\ enum\ value\ for\ an\ action/move\r\n
 numComments=3

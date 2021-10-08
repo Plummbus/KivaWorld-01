@@ -176,7 +176,8 @@ public class Kiva {
         int x = currentLocation.getX();
         int y = currentLocation.getY();
         
-        switch (this.getDirectionFacing()) {
+        switch (this.getDirectionFacing()) {    //I could implement getDelta() from FacingDirection.java here,
+                                                //but I think using the getter method for the switch comparison this way makes the cases more readable
             case UP:
                 y = y - 1;
                 validMove(x, y);
