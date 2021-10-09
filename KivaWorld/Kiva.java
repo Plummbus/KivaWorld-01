@@ -342,19 +342,4 @@ public class Kiva {
     public long getMotorLifetime() {
         return this.motorLifetime;
     }
-    
-    /*
-     * 
-     * These methods (setters) are for TESTING PURPOSES ONLY in KivaConstructor.java and KivaMoveTest.java
-     */
-    
-    /*
-    public void setCurrentLocation(Point point) {
-        this.currentLocation = point;
-    }
-    
-    public void setCarryingPod(boolean value) {
-        this.carryingPod = value;
-    }
-    */
 }

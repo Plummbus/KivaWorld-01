@@ -279,7 +279,6 @@ public class KivaMoveTest {
     //start at Point(2, 4) and attempt to move to Point(8, 1) to collide with pod, should throw an IllegalMoveException
     public void testHoldPodMoveToPod() {
         Kiva kiva = new Kiva(defaultMap);
-        kiva.setCarryingPod(true);
 
         kiva.move(KivaCommand.FORWARD);
         kiva.move(KivaCommand.FORWARD);
@@ -290,7 +289,12 @@ public class KivaMoveTest {
         kiva.move(KivaCommand.FORWARD);
         kiva.move(KivaCommand.FORWARD);
         kiva.move(KivaCommand.FORWARD);
-        kiva.move(KivaCommand.FORWARD); //Point(8, 0)
+        kiva.move(KivaCommand.FORWARD); //Point(8, 0) where the Pod is
+        kiva.move(KivaCommand.TAKE);
+        kiva.move(KivaCommand.FORWARD);//moves off the Pod spot to Point(9,0)
+        kiva.move(KivaCommand.TURN_RIGHT);
+        kiva.move(KivaCommand.TURN_RIGHT);//turn to face LEFT back towards Pod
+        kiva.move(KivaCommand.FORWARD);//move into Pod spot, should throw exception
         
     }
     
@@ -309,11 +313,30 @@ public class KivaMoveTest {
     }
     
     
-    
+    /**
+     * Helper function for the constructor tests.
+     * Lets us know if two Points are the same Point.
+     * 
+     * @param a     the first Point you wish to compare.
+     * @param b     the second Point you wish to compare.
+     * 
+     * @return true if parameters are equal, false if not
+     */
     private boolean sameLocation(Point a, Point b) {
         return a.getX() == b.getX() && a.getY() == b.getY();
     }
     
+    
+    /**
+     * Verifies the if the current instance of <tt>Kiva</tt> has the correct/expected information via a console message.
+     * 
+     * @param testname          The name of the test, can be anything.
+     * @param actual            The <tt>Kiva</tt> instance that is being tested
+     * @param expectLocation    The (x, y) coordinates the <tt>Kiva</tt> should be located at
+     * @param expectDirection   The orientation the <tt>Kiva</tt> should be facing
+     * @param expectCarry       Whether or not the <tt>Kiva</tt> is holding a Pod
+     * @param expectDropped     Whether or not the <tt>Kiva</tt> has successfully dropped a Pod at a Drop Zone
+     */
     private void verifyKivaState(String testName, Kiva actual, Point expectLocation, FacingDirection expectDirection, boolean expectCarry, boolean expectDropped) {
         Point actualLocation = actual.getCurrentLocation();
         if (sameLocation(actualLocation, expectLocation)) {
