@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.target=KivaCommandTester
-comment0.text=\r\n\ Write\ a\ description\ of\ KivaCommandTester\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Test\ class\ for\ checking\ if\ the\ <tt>KivaCommand</tt>\ class\ is\ setup\ properly.\r\n\ \r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.10\r\n\ @since\ 10-03-2021\r\n
 comment1.params=
 comment1.target=void\ testForward()
+comment1.text=\r\n\ Creates\ instances\ of\ <tt>KivaCommand</tt>,\ one\ for\ each\ constant.\ Then\ it\ prints\ that\ constant\ and\ its\ associated\ value\ to\ the\ console.\r\n\ \r\n\ @see\ KivaCommand\r\n\ @see\ KivaCommand\#getDirectionKey\r\n
 numComments=2

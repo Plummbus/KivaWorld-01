@@ -2,10 +2,12 @@
 import edu.duke.Point;
 
 /**
- * Write a description of KivaMotorLifetimeTester here.
+ * Test class for the <tt>motorLifetime</tt> class field within the <tt>Kiva</tt> class.
+ * Has a small map for the <tt>Kiva</tt> to perform small operations within, and then prints diagnostic information to the console.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Franz Jacob Hernandez (herfrn@amazon.com) 
+ * @version 0.10
+ * @since 10-03-2021
  */
 public class KivaMotorLifetimeTester {
 
@@ -17,7 +19,12 @@ public class KivaMotorLifetimeTester {
                                 + "-----\n";
 
     private FloorMap defaultMap = new FloorMap(defaultLayout);
-                                
+    
+    /**
+     * Puts the <tt>Kiva</tt> in a small 3x3 map and has it perform some actions/movement. After resolving a command, the lifetime of the motor is printed
+     * to the console to check whether or not the correct amount had been added to the class field. The value of the motor begins at 0, and performing certain
+     * actions increases the value by 1000. The motor reaches the end of its life when it hits 72,000,000,000.
+     */
     public void testIncrement() {
         Kiva kiva = new Kiva(defaultMap, new Point(1, 1));
         
@@ -34,8 +41,8 @@ public class KivaMotorLifetimeTester {
         System.out.println(kiva.getMotorLifetime());
     }
     
-    //testing to see what the coordinates are
-    public void showMapDimensions() {
+    //Method used just for testing. Helped clear the confusion I had about how the coordinates worked with the maps.
+    private void showMapDimensions() {
         Kiva kiva = new Kiva(defaultMap);
         int minY = kiva.getMap().getMinRowNum();
         int minX = kiva.getMap().getMinColNum();

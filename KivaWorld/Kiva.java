@@ -27,35 +27,14 @@ import edu.duke.Point;
  */
 public class Kiva {
 
-    /**
-     * The current coordinates of the Kiva.
-     */
-    private Point currentLocation;
-    
-    /**
-     * The facing direction of the Kiva.
-     */
-    private FacingDirection directionFacing;
-    
-    /**
-     * The map the Kiva will be traversing.
-     */
-    private FloorMap map;
-    
-    /**
-     * State for whether or not the Kiva is holding a Pod.
-     */
-    private boolean carryingPod;
-    
-    /**
-     * State for whether or not Kiva has dropped the Pod in a Drop Zone.
-     */
-    private boolean successfulyDropped;
-    
-    /**
-     * The lifetime of the Kiva motor.
-     */
-    private long motorLifetime; //20,000 hours = 72b milliseconds <- this will be the limit, though the project doesn't specify to error check for hitting this limit
+    private Point currentLocation;              //The current coordinates of the Kiva.
+    private FacingDirection directionFacing;    //The facing direction of the Kiva.    
+    private FloorMap map;                       //The map the Kiva will be traversing.
+    private boolean carryingPod;                //State for whether or not the Kiva is holding a Pod.
+    private boolean successfulyDropped;         //State for whether or not Kiva has dropped the Pod in a Drop Zone.
+    private long motorLifetime;                 //The lifetime of the Kiva motor. 
+                                                //20,000 hours = 72b milliseconds <- this will be the limit, though the project doesn't
+                                                //specify to error check for hitting this limit
 
     /**
      * Class Constructor.
@@ -368,6 +347,8 @@ public class Kiva {
      * 
      * These methods (setters) are for TESTING PURPOSES ONLY in KivaConstructor.java and KivaMoveTest.java
      */
+    
+    /*
     public void setCurrentLocation(Point point) {
         this.currentLocation = point;
     }
@@ -375,4 +356,5 @@ public class Kiva {
     public void setCarryingPod(boolean value) {
         this.carryingPod = value;
     }
+    */
 }

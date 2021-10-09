@@ -1,11 +1,20 @@
 
 /**
- * Write a description of KivaCommandTester here.
+ * Test class for checking if the <tt>KivaCommand</tt> class is setup properly.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
+ * @author Franz Jacob Hernandez (herfrn@amazon.com) 
+ * @version 0.10
+ * @since 10-03-2021
  */
 public class KivaCommandTester {
+    
+    /**
+     * Creates instances of <tt>KivaCommand</tt>, one for each constant. Then it prints that constant and its associated value to the console.
+     * 
+     * @see KivaCommand
+     * @see KivaCommand#getDirectionKey
+     */
     public void testForward() {
         KivaCommand command1 = KivaCommand.FORWARD;
         System.out.println(command1);
