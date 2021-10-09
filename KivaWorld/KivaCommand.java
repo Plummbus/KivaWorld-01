@@ -5,7 +5,7 @@
  * The <tt>Kiva</tt> will receive commands as values of this enum. Each value corresponds to a specific action/movement the <tt>Kiva</tt> can take.
  * 
  * @author Franz Jacob Hernandez (herfrn@amazon.com) 
- * @version 0.10
+ * @version 0.05
  * @since 10-03-2021
  */
 public enum KivaCommand {

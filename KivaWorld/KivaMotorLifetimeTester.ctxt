@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=KivaMotorLifetimeTester
-comment0.text=\r\n\ Test\ class\ for\ the\ <tt>motorLifetime</tt>\ class\ field\ within\ the\ <tt>Kiva</tt>\ class.\r\n\ Has\ a\ small\ map\ for\ the\ <tt>Kiva</tt>\ to\ perform\ small\ operations\ within,\ and\ then\ prints\ diagnostic\ information\ to\ the\ console.\r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.10\r\n\ @since\ 10-03-2021\r\n
+comment0.text=\r\n\ Test\ class\ for\ the\ <tt>motorLifetime</tt>\ class\ field\ within\ the\ <tt>Kiva</tt>\ class.\r\n\ Has\ a\ small\ map\ for\ the\ <tt>Kiva</tt>\ to\ perform\ small\ operations\ within,\ and\ then\ prints\ diagnostic\ information\ to\ the\ console.\r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.02\r\n\ @since\ 10-03-2021\r\n
 comment1.params=
 comment1.target=void\ testIncrement()
 comment1.text=\r\n\ Puts\ the\ <tt>Kiva</tt>\ in\ a\ small\ 3x3\ map\ and\ has\ it\ perform\ some\ actions/movement.\ After\ resolving\ a\ command,\ the\ lifetime\ of\ the\ motor\ is\ printed\r\n\ to\ the\ console\ to\ check\ whether\ or\ not\ the\ correct\ amount\ had\ been\ added\ to\ the\ class\ field.\ The\ value\ of\ the\ motor\ begins\ at\ 0,\ and\ performing\ certain\r\n\ actions\ increases\ the\ value\ by\ 1000.\ The\ motor\ reaches\ the\ end\ of\ its\ life\ when\ it\ hits\ 72,000,000,000.\r\n

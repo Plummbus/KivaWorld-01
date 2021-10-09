@@ -10,7 +10,7 @@ import java.util.Scanner;
  * into an array of enums that the <tt>Kiva</tt> can interpret. A success, failure, or error message is displayed after processing the commands.
  * 
  * @author Franz Jacob Hernandez (herfrn@amazon.com) 
- * @version 0.10
+ * @version 0.04
  * @since 10-03-2021
  */
 public class RemoteControl {

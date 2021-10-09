@@ -6,7 +6,7 @@ import edu.duke.Point;
  * Has a small map for the <tt>Kiva</tt> to perform small operations within, and then prints diagnostic information to the console.
  * 
  * @author Franz Jacob Hernandez (herfrn@amazon.com) 
- * @version 0.10
+ * @version 0.02
  * @since 10-03-2021
  */
 public class KivaMotorLifetimeTester {

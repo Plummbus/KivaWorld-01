@@ -22,7 +22,7 @@ import edu.duke.Point;
  * 
  * 
  * @author Franz Jacob Hernandez (herfrn@amazon.com) 
- * @version 0.10
+ * @version 0.21
  * @since 10-03-2021
  */
 public class Kiva {
@@ -148,6 +148,7 @@ public class Kiva {
      * LEFT and RIGHT values move the Kiva along the x-axis, while UP and DOWN values move it along the y-axis.
      * validMove() is called within this method to determine if the new location the Kiva is attempting to move to is legal.
      * This is a helper function of the move() method.
+     * 
      * @see #validMove
      * @see #move
      */
@@ -186,7 +187,8 @@ public class Kiva {
     /**
      * Kiva TURNS LEFT to a new direction based off the current value of class field directionFacing.
      * This does NOT move the Kiva to a new location, only changes the orientation that it is facing within the same location.
-     * This is a helper function of the move() method
+     * This is a helper function of the move() method.
+     * 
      * @see #move
      */
     public void moveLeft() {
@@ -213,7 +215,8 @@ public class Kiva {
     /**
      * Kiva TURNS RIGHT to a new direction based off the current value of class field directionFacing.
      * This does NOT move the Kiva to a new location, only changes the orientation that it is facing within the same location.
-     * This is a helper function of the move() method
+     * This is a helper function of the move() method.
+     * 
      * @see #move
      */
     public void moveRight() {

@@ -1,12 +1,16 @@
 #BlueJ class context
 comment0.target=RemoteControlTest
-comment0.text=\r\n\ Write\ a\ description\ of\ RemoteControlTest\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Test\ class\ for\ checking\ if\ the\ <tt>convertToKivaCommands(String\ input)</tt>\ method\ from\ class\ <tt>RemoteControl</tt>\ works\ as\ intended.\r\n\ \r\n\ \r\n\ @author\ Franz\ Jacob\ Hernandez\ (herfrn@amazon.com)\ \r\n\ @version\ 0.02\r\n\ @since\ 10-03-2021\r\n
 comment1.params=
 comment1.target=void\ testCorrectInput()
+comment1.text=\r\n\ Tests\ if\ an\ uppercase\ <tt>String</tt>\ containing\ only\ valid\ <tt>char</tt>\ values\ is\ interpreted\ as\ a\ legal\ input\ for\r\n\ the\ convertToKivaCommands(String\ input)\ method.\r\n\ \r\n\ @see\ RemoteControl\#convertToKivaCommands\r\n
 comment2.params=
 comment2.target=void\ testLowercaseInput()
+comment2.text=\r\n\ Tests\ if\ a\ lowercase\ <tt>String</tt>\ containing\ only\ valid\ <tt>char</tt>\ values\ is\ interpreted\ as\ a\ legal\ input\ for\r\n\ the\ convertToKivaCommands(String\ input)\ method.\r\n\ \r\n\ @see\ RemoteControl\#convertToKivaCommands\r\n
 comment3.params=
 comment3.target=void\ testWrongInput()
+comment3.text=\r\n\ Tests\ if\ a\ <tt>String</tt>\ containing\ only\ invalid\ <tt>char</tt>\ values\ is\ interpreted\ as\ an\ illegal\ input\ for\r\n\ the\ convertToKivaCommands(String\ input)\ method.\r\n\ \r\n\ @see\ RemoteControl\#convertToKivaCommands\r\n
 comment4.params=
 comment4.target=void\ testMixedInput()
+comment4.text=\r\n\ Tests\ if\ an\ uppercase\ <tt>String</tt>\ containing\ only\ a\ mix\ of\ valid\ and\ invalid\ <tt>char</tt>\ values\ is\ interpreted\ as\ an\ illegal\ input\ for\r\n\ the\ convertToKivaCommands(String\ input)\ method.\r\n\ \r\n\ @see\ RemoteControl\#convertToKivaCommands\r\n
 numComments=5

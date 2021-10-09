@@ -7,7 +7,7 @@ import java.util.Random;
  * and then a message is printed to the console based on whether or not the current object possess the values we expect it to have.
  * 
  * @author Franz Jacob Hernandez (herfrn@amazon.com) 
- * @version 0.10
+ * @version 0.06
  * @since 10-03-2021
  */
 public class KivaConstructorTest {

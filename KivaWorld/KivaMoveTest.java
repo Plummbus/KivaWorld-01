@@ -2,10 +2,13 @@
 import edu.duke.Point;
 
 /**
- * Write a description of KivaMoveTest here.
+ * Test class for the methods in the <tt>Kiva</tt> class. Tests are focused on verifying in move methods take Kiva to the correct location and orientation, as 
+ * well as verifying if non-movement actions affect <tt>Kiva</tt>'s class fields in the expected way. There is also exception throwing testing for both
+ * movement and non-movement actions the <tt>Kiva</tt> can perform.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Franz Jacob Hernandez (herfrn@amazon.com) 
+ * @version 0.14
+ * @since 10-03-2021
  */
 public class KivaMoveTest {
     
@@ -32,7 +35,14 @@ public class KivaMoveTest {
     FloorMap defaultMap = new FloorMap(defaultLayout);
     FloorMap openMap = new FloorMap(openLayout);
     
-    //testing to see what the coordinates are
+    /**
+     * Method to help understand how the map's dimensions are setup. Displays a the dimensions to the user via the console.
+     * 
+     * @see FloorMap#getMinRowNum
+     * @see FloorMap#getMinColNum
+     * @see FloorMap#getMaxRowNum
+     * @see FloorMap#getMaxColNum
+     */
     public void showMapDimensions() {
         Kiva kiva = new Kiva(defaultMap);
         int minY = kiva.getMap().getMinRowNum();
@@ -44,21 +54,31 @@ public class KivaMoveTest {
         System.out.print(message);
     }
     
+    /**
+     * Method to help understand what values getDelta() returns. Displays the values of each direction facing to the user via the console.
+     * 
+     * @see FacingDirection#getDelta
+     */
     public void testDeltas() {
         Kiva kiva = new Kiva(defaultMap);
-        System.out.println(kiva.getDirectionFacing().getDelta());   //UP
+        System.out.println(kiva.getDirectionFacing().getDelta());   //(0, 1)  starts at UP
         
         kiva.move(KivaCommand.TURN_LEFT);
-        System.out.println(kiva.getDirectionFacing().getDelta());
+        System.out.println(kiva.getDirectionFacing().getDelta());   //(-1, 0)
         
         kiva.move(KivaCommand.TURN_LEFT);
-        System.out.println(kiva.getDirectionFacing().getDelta());
+        System.out.println(kiva.getDirectionFacing().getDelta());   //(0, -1)
         
         kiva.move(KivaCommand.TURN_LEFT);
-        System.out.println(kiva.getDirectionFacing().getDelta());
+        System.out.println(kiva.getDirectionFacing().getDelta());   //(1, 0)
     }
     
-    //move forward once from UP facing direction, should end facing UP and at point(2, 3)
+    /**
+     * Tests </tt>Kiva</tt>'s forward movement from the <tt>UP</tt> orientation. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed.
+     * 
+     * @see Kiva#moveForward
+     */
     public void testForwardFromUp() {
         Kiva kiva = new Kiva(defaultMap);
         kiva.move(KivaCommand.FORWARD);
@@ -66,7 +86,13 @@ public class KivaMoveTest {
         verifyKivaState("testForwardFromUp", kiva, new Point(2, 3), FacingDirection.UP, false, false);
     }
     
-    //turn left from UP facing direction, should end up facing LEFT and be at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn left. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called once.
+     * 
+     * @see Kiva#moveLeft
+     *
+     */
     public void testTurnLeftFromUp() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -75,7 +101,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnLeftFromUp", kiva, new Point(2, 4), FacingDirection.LEFT, false, false);
     }
     
-    //turn left TWICE from UP facing direction, should end up facing DOWN and be at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn left. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called twice.
+     * 
+     * @see Kiva#moveLeft
+     *
+     */
     public void testTurnLeftFromLeft() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -85,7 +117,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnLeftFromUp", kiva, new Point(2, 4), FacingDirection.DOWN, false, false);
     }
     
-    //turn left THRICE from UP facing direction, should end up facing RIGHT and be at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn left. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called thrice.
+     * 
+     * @see Kiva#moveLeft
+     *
+     */
     public void testTurnLeftFromDown() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -96,7 +134,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnLeftFromUp", kiva, new Point(2, 4), FacingDirection.RIGHT, false, false);
     }
     
-    //turn left 4 TIMES from UP facing direction, should end up facing UP and be at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn left. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called 4 times.
+     * 
+     * @see Kiva#moveLeft
+     *
+     */
     public void testTurnLeftFromRight() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -108,7 +152,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnLeftFromUp", kiva, new Point(2, 4), FacingDirection.UP, false, false);
     }
     
-    //turn left ONCE and then move forward ONCE, should be facing LEFT and be at Point(1, 3);
+    /**
+     * Tests </tt>Kiva</tt>'s forward movement from the <tt>LEFT</tt> orientation. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called once.
+     * 
+     * @see Kiva#moveForward
+     * @see Kiva#moveLeft
+     */
     public void testForwardWhileFacingLeft() {
         Kiva kiva  = new Kiva(defaultMap);
         
@@ -118,7 +168,13 @@ public class KivaMoveTest {
         verifyKivaState("testForwadWhileFacingLeft", kiva, new Point(1, 4), FacingDirection.LEFT, false, false);
     }
     
-    //turn left TWICE and the move forward ONCE, should be facing DOWN and be at Point(2, 4)
+    /**
+     * Tests </tt>Kiva</tt>'s forward movement from the <tt>LEFT</tt> orientation. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called twice.
+     * 
+     * @see Kiva#moveForward
+     * @see Kiva#moveLeft
+     */
     public void testForwardWhileFacingDown() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -129,7 +185,13 @@ public class KivaMoveTest {
         verifyKivaState("testForwardWhileFacingDown", kiva, new Point(2, 5), FacingDirection.DOWN, false, false);
     }
     
-    //turn left THRICE and the move forward ONCE, should be facing RIGHT and be at Point(3, 3)
+    /**
+     * Tests </tt>Kiva</tt>'s forward movement from the <tt>LEFT</tt> orientation. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveLeft()</tt> is called thrice.
+     * 
+     * @see Kiva#moveForward
+     * @see Kiva#moveLeft
+     */
     public void testForwardWhileFacingRight() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -141,7 +203,12 @@ public class KivaMoveTest {
         verifyKivaState("testForwardWhileFacingRight", kiva, new Point(3, 4), FacingDirection.RIGHT, false, false);
     }
     
-    //turn right ONCE, should be facing RIGHT and at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn right. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. <tt>moveRight()</tt> is called once.
+     * 
+     * @see Kiva#moveRight
+     */
     public void testTurnRightFromUp() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -150,7 +217,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnRightFromUp", kiva, new Point(2, 4), FacingDirection.RIGHT, false, false);
     }
     
-    //turn left ONCE followed by right ONCE, should be facing UP and at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn right. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. After <tt>moveLeft()</tt> is called once, <tt>moveRight()</tt> is called once.
+     * 
+     * @see Kiva#moveRight
+     * @see Kiva#moveLeft
+     */
     public void testTurnRightFromLeft() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -160,7 +233,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnRightFromUp", kiva, new Point(2, 4), FacingDirection.UP, false, false);
     }
     
-    //turn left TWICE followed by right ONCE, should be facing LEFT and at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn right. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. After <tt>moveLeft()</tt> is called twice, <tt>moveRight()</tt> is called once.
+     * 
+     * @see Kiva#moveRight
+     * @see Kiva#moveLeft
+     */
     public void testTurnRightFromDown() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -171,7 +250,13 @@ public class KivaMoveTest {
         verifyKivaState("testTurnRightFromUp", kiva, new Point(2, 4), FacingDirection.LEFT, false, false);
     }
     
-    //turn left THRICE followed by right ONCE, should be facing DOWN and at initial position
+    /**
+     * Tests </tt>Kiva</tt>'s ability to turn right. Main field(s) to be verified are the location and direction it is facing. Displays a message to the user
+     * via the console, verification determines which message is displayed. After <tt>moveLeft()</tt> is called thrice, <tt>moveRight()</tt> is called once.
+     * 
+     * @see Kiva#moveRight
+     * @see Kiva#moveLeft
+     */
     public void testTurnRightFromRight() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -183,7 +268,12 @@ public class KivaMoveTest {
         verifyKivaState("testTurnRightFromUp", kiva, new Point(2, 4), FacingDirection.DOWN, false, false);
     }
     
-    //move forward 3 TIMES, turn right ONCE, move forward 6 TIMES, and PICK UP POD, should be facing RIGHT at Point(8, 1)
+    /**
+     * Tests </tt>Kiva</tt>'s ability to pick up a Pod. Main functionality that is being tested is <tt>Kiva</tt>'s takePod() method.
+     * Displays a message to the user based on whether or not the <tt>Kiva</tt> was able to pick up a Pod.
+     * 
+     * @see Kiva#takePod
+     */
     public void testTakeOnPod() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -202,7 +292,12 @@ public class KivaMoveTest {
         verifyKivaState("testTakeOnPod", kiva, new Point(8, 1), FacingDirection.RIGHT, true, false);
     }
     
-    //move forward 3 TIMES, turn right ONCE, move forward 6 TIMES, PICK UP POD, move to drop zone -> Point(10, 4), then DROP POD.
+    /**
+     * Tests </tt>Kiva</tt>'s ability to drop off a Pod. Main functionality that is being tested is <tt>Kiva</tt>'s dropPod() method.
+     * Displays a message to the user based on whether or not the <tt>Kiva</tt> was able to drop up a Pod.
+     * 
+     * @see Kiva#dropPod
+     */
     public void testDropOnDropZone() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -231,7 +326,13 @@ public class KivaMoveTest {
         verifyKivaState("testDropOnDropZone", kiva, new Point(10, 4), FacingDirection.DOWN, false, true);
     }
     
-    //similar code to method above, but now dropping pod on an EMPTY location, should throw IllegalDropZoneException
+    /**
+     * Tests </tt>Kiva</tt>'s exception handling for dropping Pods. Main functionality that is being tested is <tt>Kiva</tt>'s dropPod() method.
+     * An IllegalDropZoneLocation exception should be thrown along with a diagnostic message.
+     * 
+     * @see Kiva#dropPod
+     * @see IllegalDropZoneLocation
+     */
     public void testDropPodOnEmpty() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -253,10 +354,16 @@ public class KivaMoveTest {
         kiva.move(KivaCommand.FORWARD); //Point(10, 1)
         kiva.move(KivaCommand.DROP);    //DROP POD
     }
-    
-    //this test uses the openMap layout, so we should be able to attempt to go left to a -1 x position without hitting an OBSTACLE
-    //start at Point(2, 4), turn left ONCE and then move forward 3 TIMES, should throw an IllegalMoveException
-    //FloorMap has its own exception that will throw before this, though
+
+    /**
+     * Tests <tt>Kiva</tt>'s exception handling for moving to coordinates outside the bounds of the map dimenions. Main functionality being tested is <tt>Kiva</tt>'s
+     * validMove(int a, int b) method. There is an IllegalMoveException that should be thrown, but before the message's code segment is reached, an
+     * InvalidFloorMapLocationException is thrown instead.
+     * 
+     * @see Kiva#validMove(int, int)
+     * @see InvalidFloorMapLocationException
+     * @see IllegalMoveException
+     */
     public void testOutOfBoundsMove() {
         Kiva kiva = new Kiva(openMap);
         
@@ -266,7 +373,13 @@ public class KivaMoveTest {
         kiva.move(KivaCommand.FORWARD);
     }
     
-    //start at Point(2, 4) and attempt to move to Point(3, 3) to collide with obstacle, should throw an IllegalMoveException
+    /**
+     * Tests <tt>Kiva</tt>'s exception handling for moving into spaces occupied by an obstacle. Main functionality being tested is <tt>Kiva</tt>'s
+     * validMove(int a, int b) method. IllegalMoveException should be thrown along with a diagnostic message.
+     * 
+     * @see Kiva#validMove(int, int)
+     * @see IllegalMoveException
+     */
     public void testHitObstacle() {
         Kiva kiva = new Kiva(defaultMap);
         
@@ -275,8 +388,13 @@ public class KivaMoveTest {
         kiva.move(KivaCommand.FORWARD);
     }
     
-    //kiva object starts with carryingPod = true
-    //start at Point(2, 4) and attempt to move to Point(8, 1) to collide with pod, should throw an IllegalMoveException
+    /**
+     * Tests <tt>Kiva</tt>'s exception handling for moving into spaces that contain a Pod while also holding a Pod. Main functionality be tested is <tt>Kiva</tt>'s
+     * validMove(int a, int b) method. IllegalMoveException should be thrown along with a dianostic message.
+     * 
+     * @see Kiva#validMove(int, int)
+     * @see IllegalMoveException
+     */
     public void testHoldPodMoveToPod() {
         Kiva kiva = new Kiva(defaultMap);
 
@@ -298,15 +416,22 @@ public class KivaMoveTest {
         
     }
     
-    //kiva object attempts to drop a pod when carryingPod = false, should throw a NoPodException
+    /**
+     * Tests <tt>Kiva</tt>'s exception handling for dropping a Pod when it is not carrying a Pod. Main functionality being tested is <tt>Kiva</tt>'s 
+     * dropPod() method. A NoPodException should be thrown along with a diagnostic message.
+     * 
+     * @ Kiva#dropPod();
+     */
     public void testDropWhenNoPod() {
         Kiva kiva = new Kiva(defaultMap);
         
         kiva.move(KivaCommand.DROP);
     }
     
-    //start at Point(2, 4), attempt to pick up POD while on an EMPTY location
-    //should print to console a message
+    /**
+     * Tests <tt>Kiva</tt>'s exception handling for picking up a Pod from a location that does not have a Pod. Main functionality being tested is <tt>Kiva</tt>'s
+     * takePod() method. A NoPodException should be thrown along with a diagnostic message.
+     */
     public void testTakeFromEmpty() {
         Kiva kiva = new Kiva(defaultMap);
         kiva.move(KivaCommand.TAKE);
