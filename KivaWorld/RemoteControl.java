@@ -43,7 +43,7 @@ public class RemoteControl {
      */
     public void run() {
         System.out.println("Please select a map file.");
-        System.out.println("Legal inputs are: \"sample_floor_map1.txt\", \"sample_floor_map2.txt\", and \"sample_floor_map3.txt\"");
+        System.out.println("Valid options are: \"sample_floor_map1.txt\", \"sample_floor_map2.txt\", and \"sample_floor_map3.txt\"");
         FileResource fileResource = new FileResource();
         
         String inputMap = fileResource.asString();
@@ -115,7 +115,7 @@ public class RemoteControl {
      * @see #run
      * @see Kiva#move
      */
-    public KivaCommand[] convertToKivaCommands(String input) {
+    private KivaCommand[] convertToKivaCommands(String input) {
         char[] tempArray = input.toCharArray();
         KivaCommand[] finalArray = new KivaCommand[tempArray.length];
         for (int i = 0; i < tempArray.length; i++) {

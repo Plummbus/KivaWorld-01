@@ -130,7 +130,6 @@ public class Kiva {
             throw new IllegalMoveException(message);
         }
         if (floorObject == FloorMapObject.OBSTACLE) {
-            System.out.println(floorObject);
             message = String.format("Illegal move to location with an OBSTACLE. Tried to go to Point(%d, %d)" +
                                             ". Last valid location was Point(%d, %d)", x, y, this.getCurrentLocation().getX(), this.getCurrentLocation().getY());
             throw new IllegalMoveException(message);
@@ -153,11 +152,12 @@ public class Kiva {
      * @see #move
      */
     public void moveForward() {
-        int x = currentLocation.getX();
+        int x = currentLocation.getX();         //creating local variables here so passing data to currentLocation later is easier to read
         int y = currentLocation.getY();
         
-        switch (this.getDirectionFacing()) {    //I could implement getDelta() from FacingDirection.java here,
-                                                //but I think using the getter method for the switch comparison this way makes the cases more readable/user-friendly
+        switch (this.getDirectionFacing()) {    //I could implement getDelta() from FacingDirection.java in IF statements for the conditional(s),
+                                                //but I think using a switch statement makes for more user-friendly/readable code.
+                                                //switch statements can only evaluate primitives, enums, and wrappers of primitives, unfortunately.
             case UP:
                 y = y - 1;
                 validMove(x, y);
@@ -272,7 +272,7 @@ public class Kiva {
                 this.successfulyDropped = true;
             } else {
             String objectName = mapObject.name();
-            String message = String.format("Current location Point(%d, %d) is not a DROP_ZONE, cannot DROP pod in: %s", target.getX(), target.getY(), objectName);
+            String message = String.format("Current location Point(%d, %d) is not a DROP_ZONE, cannot DROP pod. FloorMapObject of current location is: %s", target.getX(), target.getY(), objectName);
             throw new IllegalDropZoneException(message);
             }
         } else {
